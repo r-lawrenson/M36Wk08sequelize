@@ -1,13 +1,20 @@
 const yargs = require("yargs");
 const { addAuthor, updateAuthor, deleteAuthor, listAuthors, resetAuthor, dropAuthor,  } = require("./author/authorMethod");
 const { addBook, updateBook, deleteBook, listBooks,  resetBook, dropBook } = require("./book/bookMethod");
-
 const { sequelize } = require("./db/connection");
+
+// const Author = require("./author/authorTable");
+// const Book = require("./book/bookTable");
+
 // imports for CRUD operations
+
+// Author.hasMany(Book);
+// Book.belongsTo(Author);
 
 const app = async (yargsObj) => {
     try {
         await sequelize.sync();
+        // await sequelize.sync({force: true});
         // // commands for book table
         if (yargsObj.addbook) {
             // --addbook --title="book title"
@@ -23,13 +30,9 @@ const app = async (yargsObj) => {
             console.log(`${yargsObj.title} has been deleted`);
 
 
-
-
         } else if (yargsObj.listbooks) {
             // --listbooks ? can it search?
             console.log(await listBooks());
-
-
 
 
         } else if (yargsObj.dropbook) {
@@ -48,7 +51,7 @@ const app = async (yargsObj) => {
             await addAuthor({author_name: yargsObj.author});
             console.log(`${yargsObj.author} has been added.`);
         } else if (yargsObj.updateauthor) {
-            // --updateauthor
+            // --updateauthor ? not working ?
             await updateAuthor({author_name: yargsObj.newauthor},{where:{author_name: yargsObj.author}});
             console.log(`${yargsObj.title} has been updated.`);
         } else if (yargsObj.deleteauthor){

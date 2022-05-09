@@ -8,9 +8,9 @@ const Book = sequelize.define("Book", {
         allowNull: false,
         unique: true,
     },
-    // book_author: {
-    //     type: DataTypes.STRING,
-    //     defaultValue: "Not specified",
+    // book_year: {
+    //     type: DataTypes.INTEGER(4),
+    //     defaultValue: 0000,
     // },
     // book_rating: {
     //     type: DataTypes.INTEGER,

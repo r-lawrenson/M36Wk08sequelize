@@ -2,6 +2,7 @@ const Book = require("./bookTable");
 // --addbook
 exports.addBook = async (bookObj) => {
     try {
+        
         await Book.create(bookObj);
     } catch (error) {
         console.log(error);
@@ -16,13 +17,14 @@ exports.listBooks = async () => {
     }
 };
 // --updatebook
-exports.updateBook = async (bookObj) => {
+exports.updateBook = async (yargsObj) => {
     try {
-        return await Book.update(bookObj)
+        // no error but where is the data going?
+        return await Book.update({book_title: yargsObj.newtitle}, {where: {book_title: yargsObj.title}})
     } catch (error) {
         console.log(error);
     }
-}
+};
 // -- deletebook
 exports.deleteBook = async (bookObj) => {
     try {
