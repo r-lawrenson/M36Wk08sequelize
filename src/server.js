@@ -14,16 +14,23 @@ const app = async (yargsObj) => {
             await addBook({book_title: yargsObj.title});
             console.log(`${yargsObj.title} has been added.`);
         } else if (yargsObj.updatebook) {
-            // --updatebook
-            await updateBook({book_title: yargsObj.newtitle}, {book_title: yargsObj.title});
+            // --updatebook ? why wont this work?
+            await updateBook({book_title: yargsObj.newtitle}, {where: {book_title: yargsObj.title}});
             console.log(`${yargsObj.title} has been updated.`);
         } else if (yargsObj.deletebook){
             // --deletebook --title="book title"
             await deleteBook({where:{book_title: yargsObj.title}});
             console.log(`${yargsObj.title} has been deleted`);
+
+
+
+
         } else if (yargsObj.listbooks) {
-            // --listbooks
-            console.log(await listBooks(), [author_name]);
+            // --listbooks ? can it search?
+            console.log(await listBooks());
+
+
+
 
         } else if (yargsObj.dropbook) {
             // --dropbook this will drop the book table
@@ -42,11 +49,11 @@ const app = async (yargsObj) => {
             console.log(`${yargsObj.author} has been added.`);
         } else if (yargsObj.updateauthor) {
             // --updateauthor
-            await updateAuthor({author_name: yargsObj.name});
+            await updateAuthor({author_name: yargsObj.newauthor},{where:{author_name: yargsObj.author}});
             console.log(`${yargsObj.title} has been updated.`);
-        } else if (yargsObj.deletebook){
+        } else if (yargsObj.deleteauthor){
             // --deleteauthor --author="author name"
-            await deleteAuthor({where:{book_title: yargsObj.title}});
+            await deleteAuthor({where:{author_name: yargsObj.author}});
             console.log(`${yargsObj.title} has been deleted`);
         } else if (yargsObj.listauthors) {
             // --listauthors
